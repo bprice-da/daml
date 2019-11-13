@@ -1,0 +1,25 @@
+# Copyright (c) 2019 The DAML Authors. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
+load("//bazel_tools:haskell.bzl", "da_haskell_binary")
+
+da_haskell_binary(
+    name = "daml2ts",
+    srcs = glob(["src/**/*.hs"]),
+    src_strip_prefix = "src",
+
+    hackage_deps = [
+        "base",
+        "bytestring",
+        "optparse-applicative",
+        "text",
+        "zip-archive",
+    ],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//compiler/daml-lf-ast",
+        "//compiler/daml-lf-proto",
+        "//compiler/daml-lf-reader",
+        "//libs-haskell/da-hs-base",
+    ],
+)
